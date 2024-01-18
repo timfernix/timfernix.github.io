@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>timfernix</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script type="text/javascript" src="script.js"></script>
+</head>
+<body>
+    <canvas id="background"></canvas>
+
+    <script>
+      const canvas = document.getElementById('background');
+      const ctx = canvas.getContext('2d');
+  
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+  
+      const particles = [];
+      const mouse = { x: 0, y: 0 };
+  
+      // Funktion zum Erstellen eines Partikels
+      function createParticle(x, y) {
+        const particle = {
+          x,
+          y,
+          radius: Math.random() * 3 + 1, // Kleinere Partikel
+          color: 'white', // Weiß
+          velocity: {
+            x: (Math.random() - 0.5) * 2,
+            y: (Math.random() - 0.5) * 2,
+          },
+          opacity: Math.random() * 0.5 + 0.1, // Transparentere Partikel
+          life: 50, // Lebensdauer eines Partikels
+        };
+        particles.push(particle);
+      }
+  
+  
+  
+      // Funktion zum Zeichnen der Partikel
+      function drawParticles() {
+        particles.forEach((particle) => {
+          ctx.beginPath();
+          ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(255, 255, 255, ${particle.opacity})`;
+          ctx.fill();
+        });
+      }
+  
+      // Funktion zum Aktualisieren der Partikel
+      function updateParticles() {
+        particles.forEach((particle, index) => {
+          particle.x += particle.velocity.x;
+          particle.y += particle.velocity.y;
+  
+          // Entferne Partikel, die außerhalb des sichtbaren Bereichs liegen
+          if (
+            particle.x - particle.radius > canvas.width ||
+            particle.x + particle.radius < 0 ||
+            particle.y - particle.radius > canvas.height ||
+            particle.y + particle.radius < 0
+          ) {
+            particles.splice(index, 1);
+          }
+  
+          // Reduziere die Lebensdauer jedes Partikels
+          particle.life--;
+  
+          // Entferne Partikel, deren Lebensdauer abgelaufen ist
+          if (particle.life <= 0) {
+            particles.splice(index, 1);
+          }
+        });
+      }
+  
+      // Funktion zum Zeichnen der Verbindungen zwischen Partikeln
+      function drawConnections() {
+        particles.forEach((particle1) => {
+          particles.forEach((particle2) => {
+            if (particle1 !== particle2) {
+              const distance = Math.sqrt(
+                (particle1.x - particle2.x) ** 2 +
+                (particle1.y - particle2.y) ** 2
+              );
+  
+              if (distance < 100) {
+                ctx.beginPath();
+                ctx.moveTo(particle1.x, particle1.y);
+                ctx.lineTo(particle2.x, particle2.y);
+                ctx.strokeStyle = `rgba(255, 255, 255, ${1 - distance / 100})`; // Transparentere Verbindungslinien
+                ctx.lineWidth = 1;
+                ctx.stroke();
+              }
+            }
+          });
+        });
+      }
+  
+      // Funktion zur Aktualisierung der Mausposition
+      function updateMousePosition(e) {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+      }
+  
+      // Hinzufügen von Event-Listenern
+      canvas.addEventListener('mousemove', updateMousePosition);
+  
+      // Animationsfunktion
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        createParticle(Math.random() * canvas.width, Math.random() * canvas.height);
+        drawParticles();
+        updateParticles();
+        drawConnections();
+  
+        // Maus als Partikel hinzufügen
+        createParticle(mouse.x, mouse.y);
+  
+        requestAnimationFrame(animate);
+      }
+  
+      // Initialisieren der Animation
+      animate();
+    </script>
+</body>
+</html>
