@@ -1,128 +1,273 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
     <title>timfernix</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <script type="text/javascript" src="script.js"></script>
-</head>
-<body>
-    <canvas id="background"></canvas>
-
-    <script>
-      const canvas = document.getElementById('background');
-      const ctx = canvas.getContext('2d');
-  
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-  
-      const particles = [];
-      const mouse = { x: 0, y: 0 };
-  
-      // Funktion zum Erstellen eines Partikels
-      function createParticle(x, y) {
-        const particle = {
-          x,
-          y,
-          radius: Math.random() * 3 + 1, // Kleinere Partikel
-          color: 'white', // Weiß
-          velocity: {
-            x: (Math.random() - 0.5) * 2,
-            y: (Math.random() - 0.5) * 2,
-          },
-          opacity: Math.random() * 0.5 + 0.1, // Transparentere Partikel
-          life: 50, // Lebensdauer eines Partikels
-        };
-        particles.push(particle);
-      }
-  
-  
-  
-      // Funktion zum Zeichnen der Partikel
-      function drawParticles() {
-        particles.forEach((particle) => {
-          ctx.beginPath();
-          ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(255, 255, 255, ${particle.opacity})`;
-          ctx.fill();
-        });
-      }
-  
-      // Funktion zum Aktualisieren der Partikel
-      function updateParticles() {
-        particles.forEach((particle, index) => {
-          particle.x += particle.velocity.x;
-          particle.y += particle.velocity.y;
-  
-          // Entferne Partikel, die außerhalb des sichtbaren Bereichs liegen
-          if (
-            particle.x - particle.radius > canvas.width ||
-            particle.x + particle.radius < 0 ||
-            particle.y - particle.radius > canvas.height ||
-            particle.y + particle.radius < 0
-          ) {
-            particles.splice(index, 1);
-          }
-  
-          // Reduziere die Lebensdauer jedes Partikels
-          particle.life--;
-  
-          // Entferne Partikel, deren Lebensdauer abgelaufen ist
-          if (particle.life <= 0) {
-            particles.splice(index, 1);
-          }
-        });
-      }
-  
-      // Funktion zum Zeichnen der Verbindungen zwischen Partikeln
-      function drawConnections() {
-        particles.forEach((particle1) => {
-          particles.forEach((particle2) => {
-            if (particle1 !== particle2) {
-              const distance = Math.sqrt(
-                (particle1.x - particle2.x) ** 2 +
-                (particle1.y - particle2.y) ** 2
-              );
-  
-              if (distance < 100) {
-                ctx.beginPath();
-                ctx.moveTo(particle1.x, particle1.y);
-                ctx.lineTo(particle2.x, particle2.y);
-                ctx.strokeStyle = `rgba(255, 255, 255, ${1 - distance / 100})`; // Transparentere Verbindungslinien
-                ctx.lineWidth = 1;
-                ctx.stroke();
-              }
-            }
-          });
-        });
-      }
-  
-      // Funktion zur Aktualisierung der Mausposition
-      function updateMousePosition(e) {
-        mouse.x = e.clientX;
-        mouse.y = e.clientY;
-      }
-  
-      // Hinzufügen von Event-Listenern
-      canvas.addEventListener('mousemove', updateMousePosition);
-  
-      // Animationsfunktion
-      function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        createParticle(Math.random() * canvas.width, Math.random() * canvas.height);
-        drawParticles();
-        updateParticles();
-        drawConnections();
-  
-        // Maus als Partikel hinzufügen
-        createParticle(mouse.x, mouse.y);
-  
-        requestAnimationFrame(animate);
-      }
-  
-      // Initialisieren der Animation
-      animate();
-    </script>
-</body>
+  </head>
+  <body>
+    <video autoplay muted loop nocontrols id="myVideo">
+      <source src="./assets/vid/video7.1.mp4" type="video/mp4">
+    </video>
+    <div>
+      <p class="line-1 anim-typewriter">Two little helpers and me, together on Discord :3</p>
+    </div>
+    <div class="card-container">
+            <!-- Second Card -->
+            <div class="card">
+              <div class="card-header">
+                <div
+                  style="background: url('./assets/img/zoe_banner.png')"
+                  class="banner-img"
+                ></div>
+              </div>
+              <div class="card-body">
+                <div class="profile-header">
+                  <div class="profil-logo">
+                    <img src="./assets/img/zoe.png" />
+                  </div>
+                  <div class="badges-container">
+                    <div class="badge-item">
+                      <img src="./assets/img/badges/commands.png" alt="" />
+                      <div class="tooltip tooltip-up">Supports Commands</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="profile-body">
+                  <div class="username">
+                    Zoe<span>#7767</span>
+                    <div class="badge">&#10004 Bot</div>
+                  </div>
+                  <hr />
+                  <a href="https://discord.com/oauth2/authorize?client_id=550737379460382752&scope=bot%20applications.commands&permissions=397553298512&response_type=code&redirect_uri=https%3A%2F%2Fzoe-discord-bot.ch%2FThanksYou.html" target="_blank" class="btn">Add Zoe</a>
+                  <div class="basic-infos">
+                    <div class="category-title">About Me</div>
+                    <p>A League Of Legends Bot that automatically generate statistics! <br> <br> Wiki: <a href="https:wiki.zoe-discord-bot.ch/" target="_blank"> https:wiki.zoe-discord-bot.ch/</a> <br> Support: <a href=" https://discord.gg/3uX5uNrSq7" target="_blank"> https://discord.gg/3uX5uNrSq7</a><br> Website: <a href=" https://zoe-discord-bot.ch/" target="_blank"> https://zoe-discord-bot.ch/</a></rb></p>
+                  </div>
+                  <div class="basic-infos">
+                    <div class="category-title">Created on</div>
+                    <p>28 Feb 2019</p>
+                  </div>
+                  <div class="roles">
+                    <div class="category-title">Roles</div>
+                    <div class="roles-list">
+                      <div class="role">
+                        <div class="role-color" style="background: grey"></div>
+                        <p>Zoe</p>
+                      </div>
+                      <div class="role">
+                        <div class="role-color" style="background: violet"></div>
+                        <p>Discord Bot</p>
+                      </div>
+                      <div class="role">
+                        <div class="role-color" style="background: yellow"></div>
+                        <p>League of Legends Discord Bot</p>
+                      </div>
+                      <div class="role">
+                        <div class="role-color" style="background: green"></div>
+                        <p>Built with R4J, JDA and Java</p>
+                      </div>
+                      <div class="role">
+                        <div class="role-color" style="background: red"></div>
+                        <p>Riot API</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="note">
+                    <div class="category-title">Note</div>
+                    <textarea placeholder="Zoe is not endorsed by Riot Games or League of Legends."></textarea>
+                  </div>
+                  <div class="message">
+                    <input type="text" placeholder="Message @Zoe" />
+                  </div>
+                </div>
+              </div>
+            </div>
+      <!-- First Card -->
+      <div class="card nitro-card">
+        <div class="card-header">
+          <div
+            style="background: url('./assets/img/banner.png')"
+            class="banner-img"
+          ></div>
+        </div>
+        <div class="card-body">
+          <div class="profile-header">
+            <div class="profil-logo">
+              <img src="./assets/img/logo.jpg" />
+            </div>
+            <div class="badges-container">
+              <div class="badge-item">
+                <img src="./assets/img/badges/brilliance.png" alt="" />
+                <div class="tooltip tooltip-up">HypeSquad Brilliance</div>
+              </div>
+              <div class="badge-item">
+                <img src="./assets/img/badges/developer.png" alt="" />
+                <div class="tooltip tooltip-up">Active Developer</div>
+              </div>
+              <div class="badge-item">
+                <img src="./assets/img/badges/nitro.webp" alt="" />
+                <div class="tooltip tooltip-up">Server Boosting since 7 Sept 2022</div>
+              </div>
+              <div class="badge-item">
+                <img src="./assets/img/badges/boost.png" alt="" />
+                <div class="tooltip tooltip-up">Server Boosting since 7 Sept 2022</div>
+              </div>
+              <div class="badge-item">
+                <img src="./assets/img/badges/namechange.png" alt="" />
+                <div class="tooltip tooltip-up">Originally known as theflamehd#0001</div>
+              </div>
+            </div>
+          </div>
+          <div class="profile-body">
+            <div class="username">
+              timfernix<span></span>
+            </div>
+            <hr />
+            <div class="basic-infos">
+              <div class="category-title">About Me</div>
+              <p>
+                &#128150 Ezreal <br> &#127757 GER/EN <br> &#128187 <a href=" https://github.com/timfernix" target="_blank"> https://github.com/timfernix</a> <br> &#128736 Zoe-Staff ► discord.gg/4Rxrzsxb7d 
+              </p>
+            </div>
+            <div class="basic-infos">
+              <div class="category-title">Member Since</div>
+              <p>16 Jun 2019</p>
+            </div>
+            <div class="roles">
+              <div class="category-title">Roles</div>
+              <div class="roles-list">
+                <div class="role">
+                  <div class="role-color" style="background: yellow"></div>
+                  <p>he/him</p>
+                </div>
+                <div class="role">
+                  <div class="role-color" style="background: grey"></div>
+                  <p>ISFJ-T</p>
+                </div>
+                <div class="role">
+                  <div class="role-color" style="background: black"></div>
+                  <p>Team Cat Noir</p>
+                </div> 
+                <div class="role">
+                  <div class="role-color" style="background: violet"></div>
+                  <p>Zoe Discord Bot Staff Team</p>
+                </div>
+                <div class="role">
+                  <div class="role-color" style="background: green"></div>
+                  <p>meow nyaa meow, nya meow meow purr :3</p>
+                </div>
+                </div>
+                <br>
+                <div class="roles-list">
+                <div class="role">
+                  <div class="role-color" style="background: rgb(25, 114, 163)"></div>
+                  <p>Windows</p>
+                </div>
+                <div class="role">
+                  <div class="role-color" style="background: rgb(36, 172, 242)"></div>
+                  <p>Visual Studio Code</p>
+                </div>
+                <div class="role">
+                  <div class="role-color" style="background: rgb(247, 223, 30)"></div>
+                  <p>JavaScript</p>
+                </div>
+                <div class="role">
+                  <div class="role-color" style="background:rgb(93, 147, 78)"></div>
+                  <p>NodeJS/discord.js</p>
+                </div>
+                <div class="role">
+                  <div class="role-color" style="background: rgb(55, 118, 171)"></div>
+                  <p>Python</p>
+                </div>
+                <div class="role">
+                  <div class="role-color" style="background: rgb(227, 76, 37)"></div>
+                  <p>HTML</p>
+                </div>
+                <div class="role">
+                  <div class="role-color" style="background: rgb(37, 76, 227)"></div>
+                  <p>css</p>
+                </div>
+              </div>
+            </div>
+            <div class="note">
+              <div class="category-title">Note</div>
+              <textarea placeholder="Click to add a note"></textarea>
+            </div>
+            <div class="message">
+              <input type="text" placeholder="Message @timfernix" />
+            </div>
+          </div>
+        </div>
+      </div>
+            <!-- Third Card -->
+            <div class="card">
+              <div class="card-header">
+                <div
+                  style="background: url('./assets/img/sillyhideout_banner.gif')"
+                  class="banner-img"
+                ></div>
+              </div>
+              <div class="card-body">
+                <div class="profile-header">
+                  <div class="profil-logo">
+                    <img src="./assets/img/sillyhideout.png" />
+                  </div>
+                  <div class="badges-container">
+                    <div class="badge-item">
+                      <img src="./assets/img/badges/commands.png" alt="" />
+                      <div class="tooltip tooltip-up">Supports Commands</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="profile-body">
+                  <div class="username">
+                    Silly Hideout Tournament<span>#7740</span>
+                    <div class="badge">Bot</div>
+                  </div>
+                  <hr />
+                  <a href="https://discord.com/oauth2/authorize?client_id=1264579413417394329&permissions=8&integration_type=0&scope=bot+applications.commands" target="_blank" class="btn">Add Silly Hideout Tournament</a>
+                  <div class="basic-infos">
+                    <div class="category-title">About Me</div>
+                    <p>Need a random champ for your next match? Use /random to get a surprise pick for your lane. 🎲⚔️ <br>Originally created for the Silly Hideout, but available for everyone ✅ <br></p>
+                  </div>
+                  <div class="basic-infos">
+                    <div class="category-title">Created on</div>
+                    <p> 21 Jul 2024</p>
+                  </div>
+                  <div class="roles">
+                    <div class="category-title">Roles</div>
+                    <div class="roles-list">
+                      <div class="role">
+                        <div class="role-color" style="background: orange"></div>
+                        <p>Silly Hideout</p>
+                      </div>
+                      <div class="role">
+                        <div class="role-color" style="background: violet"></div>
+                        <p>Discord Bot</p>
+                      </div>
+                      <div class="role">
+                        <div class="role-color" style="background: green"></div>
+                        <p>Built with NodeJS, discord.js and JavaScript</p>
+                      </div>
+                      <div class="role">
+                        <div class="role-color" style="background: red"></div>
+                        <p>Riot DataDragon</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="note">
+                    <div class="category-title">Note</div>
+                    <textarea placeholder="Click to add a note"></textarea>
+                  </div>
+                  <div class="message">
+                    <input type="text" placeholder="Message @Silly Hideout Tournament" />
+                  </div>
+                </div>
+              </div>
+            </div>
+    <script src="./assets/js/demo.js"></script>
+  </body>
 </html>
