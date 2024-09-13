@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta property="og:title" content="✧ timfernix ✧">
+    <meta property="og:description" content="Check my socials and projects here">
+    <meta property="og:image" content="favicon.png">
+    <meta property="og:url" content="https://timfernix.github.io/">
+    <meta property="og:site_name" content="✧ timfernix ✧">
+    <meta property="og:type" content="website">
+    <title>timfernix</title>
+    <link rel="icon" type="image/x-icon" href="favicon.png">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="stage">
+        <video autoplay loop muted>
+          <source src="background.mp4" type="video/mp4">
+        </video>
+        <img src="banner.png" alt="banner" class="banner">
+      </div>
+    <div class="content">
+        <div id="about">
+            <img src="favicon.png" alt="timfernix">
+            <h1>timfernix</h1>
+            <p>By day, I'm an IT specialist in apprenticeship.<br><br>By night, I'm crafting digital creations with HTML, CSS, JavaScript, Python, and Markdown.</p>
+            
+            <div id="discord-link">
+            <a href="./discord" target="_blank"><img src="dev.png" alt="GitHub"><span>Discord Bot Page</span></a>
+        </div>
+        </div>
+        <div id="social-links">
+            <a href="https://github.com/timfernix" target="_blank"><img src="github.svg" alt="GitHub"><span>timfernix</span></a>
+            <a href="https://open.spotify.com/user/boyofphoenix" target="_blank"><img src="spotify.svg" alt="Spotify"><span>timfernix</span></a>
+            <a href="#" target=""><img src="discord.svg" alt="Discord"><span>timfernix</span></a>
+            <a href="https://x.com/timfernix" target="_blank"><img src="x.svg" alt="Twitter/X"><span>timfernix</span></a>
+            <a href="#" target="_blank"><img src="steam.svg" alt="Steam/X"><span>timfernix</span></a>
+            <a href="#" target=""><img src="riot.png" alt="Riot Games"><span>Star Guardian Ez#real</span></a> 
+        </div>
+        <div id="projects">
+            <h2>Current Projects</h2>
+            <ul>
+                <li><a href="https://discord.com/application-directory/550737379460382752" target="_blank">&#9657; Zoe & Zoe Helper</a></li>
+                <li><a href="http://wiki.zoe-discord-bot.ch/" target="_blank">&#9657; Zoe Wiki & Translation</a></li>
+                <li><a href="https://timfernix.github.io/LeaguePurityTest/" target="_blank">&#9657; League of Legends Purity Test</a></li>
+                <li><a href="https://github.com/timfernix/Silly-Hideout-Tournament/wiki" target="_blank">&#9657; Silly Hideout Tournament Bot</a></li>
+                <li><a href="" target="">...</a></li>
+            </ul>
+        </div>
+</body>
+
+<script language=javascript>
+    var rev = "fwd";
+    function titlebar(val){
+        var msg  = "⋆*✧timfernix✧*⋆";
+        var res = " ";
+        var speed = 200;
+        var pos = val;
+        msg = ""+msg+"";
+        var le = msg.length;
+        if(rev == "fwd"){
+            if(pos < le){
+                pos = pos+1;
+                scroll = msg.substr(0,pos);
+                document.title = scroll;
+                timer = window.setTimeout("titlebar("+pos+")",speed);
+            }
+            else {
+                rev = "bwd";
+                timer = window.setTimeout("titlebar("+pos+")",speed);
+            }
+        }
+        else {
+            if(pos > 0) {
+                pos = pos-1;
+                var ale = le-pos;
+                scrol = msg.substr(ale,le);
+                document.title = scrol;
+                timer = window.setTimeout("titlebar("+pos+")",speed);
+            }
+            else {
+                rev = "fwd";
+                timer = window.setTimeout("titlebar("+pos+")",speed);
+            }
+        }
+    }
+    titlebar(0);
+</script>
+</html>
