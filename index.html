@@ -2,89 +2,207 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta property="og:title" content="✧ timfernix ✧">
-    <meta property="og:description" content="Check my socials and projects here">
-    <meta property="og:image" content="favicon.png">
-    <meta property="og:url" content="https://timfernix.github.io/">
-    <meta property="og:site_name" content="✧ timfernix ✧">
-    <meta property="og:type" content="website">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>timfernix</title>
-    <link rel="icon" type="image/x-icon" href="favicon.png">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta name="description" content="timfernix – IT apprentice, coder, and digital stardust explorer. Projects, Discord bots, League, and more.">
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="timfernix" />
+    <meta property="og:description" content="IT apprentice, coder, and digital stardust explorer. Projects, Discord bots, League, and more." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://timfernix.github.io/" />
+    <meta property="og:image" content="https://timfernix.github.io/assets/banner.png" />
+    <meta property="og:site_name" content="timfernix" />
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="timfernix" />
+    <meta name="twitter:description" content="IT apprentice, coder, and digital stardust explorer. Projects, Discord bots, League, and more." />
+    <meta name="twitter:image" content="https://timfernix.github.io/assets/banner.png" />
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class="stage">
-        <video autoplay loop muted>
-          <source src="background.mp4" type="video/mp4">
-        </video>
-        <img src="banner.png" alt="banner" class="banner">
-      </div>
-    <div class="content">
-        <div id="about">
-            <img src="favicon.png" alt="timfernix">
-            <h1>timfernix</h1>
-            <p>By day, I'm an IT specialist in apprenticeship.<br><br>By night, I'm crafting digital creations with HTML, CSS, JavaScript, Python, and Markdown.</p>
-            
-            <div id="discord-link">
-            <a href="./discord" target="_blank"><img src="dev.png" alt="GitHub"><span>Discord Bot Page</span></a>
-        </div>
-        </div>
-        <div id="social-links">
-            <a href="https://github.com/timfernix" target="_blank"><img src="github.svg" alt="GitHub"><span>timfernix</span></a>
-            <a href="https://open.spotify.com/user/boyofphoenix" target="_blank"><img src="spotify.svg" alt="Spotify"><span>timfernix</span></a>
-            <a href="#" target=""><img src="discord.svg" alt="Discord"><span>timfernix</span></a>
-            <a href="https://x.com/timfernix" target="_blank"><img src="x.svg" alt="Twitter/X"><span>timfernix</span></a>
-            <a href="#" target="_blank"><img src="steam.svg" alt="Steam/X"><span>timfernix</span></a>
-            <a href="#" target=""><img src="riot.png" alt="Riot Games"><span>Star Guardian Ez#real</span></a> 
-        </div>
-        <div id="projects">
-            <h2>Current Projects</h2>
-            <ul>
-                <li><a href="https://discord.com/application-directory/550737379460382752" target="_blank">&#9657; Zoe & Zoe Helper</a></li>
-                <li><a href="http://wiki.zoe-discord-bot.ch/" target="_blank">&#9657; Zoe Wiki & Translation</a></li>
-                <li><a href="https://timfernix.github.io/LeaguePurityTest/" target="_blank">&#9657; League of Legends Purity Test</a></li>
-                <li><a href="https://github.com/timfernix/Silly-Hideout-Tournament/wiki" target="_blank">&#9657; Silly Hideout Tournament Bot</a></li>
-                <li><a href="" target="">...</a></li>
-            </ul>
-        </div>
-</body>
+    <div class="star-bg"></div>
+    <canvas id="star-bg-canvas"></canvas>
+    <nav class="navbar">
+        <h1 class="logo">𓆩✧𓆪 timfernix</h1>
+    </nav>
+    <header class="banner">
+        <img src="assets/banner.png" alt="timfernix Star Guardian Banner">
+    </header>
+    <main>
+        <section class="about card">
+            <h2>About Me </h2>
+            <p>Somewhere between tech support and digital stardust, I’m an IT apprentice that builds things with code.</p>
+            <p>Whether it’s websites, Discord bots, or data tools — I bring structure, glow, and just enough sparkle.</p>
+            <p>When I’m not coding, you’ll find me exploring the cosmos of tech, gaming, or vibing to my favorite tunes.</p>
+            <p>Let’s connect and create something stellar together! 𓆩✧𓆪</p>
+        </section>
+        <section class="socials card">
+            <h2>Socials & Games</h2>
+            <div class="social-icons">
+                <a href="https://github.com/timfernix" class="icon github" aria-label="GitHub"></a>
+                <p>GitHub</p>
+                <a href="https://x.com/timfernix" class="icon twitter" aria-label="Twitter"></a>
+                <p>Twitter</p>
+                <a href="#" class="icon discord" aria-label="Discord"></a>
+                <p>Discord Server</p>
+                <a href="https://open.spotify.com/user/boyofphoenix" class="icon spotify" aria-label="Spotify"></a>
+                <p>Spotify</p>
+            </div>
+            <div class="social-icons">
+                <a href="#" class="icon riot" aria-label="Riot Games"></a>
+                <p>Star Guardian Ez#real (EUW)</p>
+                <a href="https://steamcommunity.com/id/timfernix" class="icon steam" aria-label="timfernix"></a>
+                <p>Steam</p>
+            </div>
+        </section>
+        <section class="projects" id="projects">
+            <h2>Projects</h2>
+            <div class="project-card card">
+                <h3>Zoe ✧ Discord Bot & Wiki</h3>
+                    <div class="tech-stack">
+                    <span class="tag">Java</span>
+                    <span class="tag">Riot API</span>
+                    <span class="tag">HTML</span>
+                    <span class="tag">CSS</span>
+                    <span class="tag">Markdown</span>
+                    <span class="tag">WikiJS</span>
+                    </span>
+                </div>
+                <p>Zoe provides real-time League of Legends statistics and social features in your discord server!</p>
+                <a href="https://zoe-discord-bot.ch/" class="project-button">View Zoe Website</a>
+                <a href="https://wiki.zoe-discord-bot.ch/" class="project-button">View Zoe Wiki</a>
+            </div>
 
-<script language=javascript>
-    var rev = "fwd";
-    function titlebar(val){
-        var msg  = "⋆*✧timfernix✧*⋆";
-        var res = " ";
-        var speed = 200;
-        var pos = val;
-        msg = ""+msg+"";
-        var le = msg.length;
-        if(rev == "fwd"){
-            if(pos < le){
-                pos = pos+1;
-                scroll = msg.substr(0,pos);
-                document.title = scroll;
-                timer = window.setTimeout("titlebar("+pos+")",speed);
-            }
-            else {
-                rev = "bwd";
-                timer = window.setTimeout("titlebar("+pos+")",speed);
-            }
-        }
-        else {
-            if(pos > 0) {
-                pos = pos-1;
-                var ale = le-pos;
-                scrol = msg.substr(ale,le);
-                document.title = scrol;
-                timer = window.setTimeout("titlebar("+pos+")",speed);
-            }
-            else {
-                rev = "fwd";
-                timer = window.setTimeout("titlebar("+pos+")",speed);
-            }
+            <div class="project-card card">
+                <h3>Zoe Helper ✧ Discord Bot</h3>
+                    <div class="tech-stack">
+                    <span class="tag">JavaScript</span>
+                    <span class="tag">DiscordJS</span>
+                    <span class="tag">RSS
+                </div>
+                <p>This bot is designed to enhance the support experience on the Zoe Discord Bot support server.</p>
+                <a href="https://github.com/timfernix/Zoe-Helper" class="project-button">View Zoe Heper Project</a>
+            </div>
+            <div class="project-card card">
+                <h3>League Purity Test ✧ Website</h3>
+                    <div class="tech-stack">
+                    <span class="tag">HTML</span>
+                    <span class="tag">CSS</span>
+                    <span class="tag">JavaScript</span>
+                    </div>
+                <p>Test your League of Legends purity with this and purity test!</p>
+                <a href="https://timfernix.github.io/LeaguePurityTest/" class="project-button">View Purity Test</a>
+            </div>
+
+            <div class="project-card card">
+                <h3>TOAST ✧ Discord Bot</h3>
+                    <div class="tech-stack">
+                    <span class="tag">JavaScript</span>
+                    <span class="tag">DiscordJS</span>
+                    <span class="tag">PHP</span>
+                    <span class="tag">MySQL</span>
+                    </div>
+                <p>TOAST = Twodis OTP ARAM Super Tournament. This bot was made to organize and manage Twodis tournaments.</p>
+                <a href="https://github.com/timfernix/TOAST" class="project-button">View TOAST Project</a>
+            </div>
+        </section>
+        <a href="#projects" class="scroll-arrow" id="scrollArrow" aria-label="Scroll to Projects">
+  <span class="arrow-shape"></span>
+  <span class="arrow-text">Projects</span>
+</a>
+    </main>
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const arrow = document.getElementById('scrollArrow');
+    const projects = document.getElementById('projects');
+
+    function isProjectsVisible() {
+        const rect = projects.getBoundingClientRect();
+        return rect.top >= 0 && rect.top < window.innerHeight;
+    }
+
+    function updateArrowVisibility() {
+        if (isProjectsVisible()) {
+            arrow.style.opacity = '0';
+            arrow.style.pointerEvents = 'none';
+        } else {
+            arrow.style.opacity = '1';
+            arrow.style.pointerEvents = 'auto';
         }
     }
-    titlebar(0);
+
+    updateArrowVisibility();
+
+    window.addEventListener('resize', updateArrowVisibility);
+    window.addEventListener('scroll', function() {
+        arrow.style.opacity = '0';
+        arrow.style.pointerEvents = 'none';
+    });
+
+    arrow.addEventListener('click', function() {
+        arrow.style.opacity = '0';
+        arrow.style.pointerEvents = 'none';
+    });
+});
 </script>
+<script>
+const canvas = document.getElementById('star-bg-canvas');
+const ctx = canvas.getContext('2d');
+let stars = [];
+const STAR_COUNT = 80;
+
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+function randomColor() {
+    const palette = ['#fff8', '#ffe06699', '#b04ad6aa', '#3fd6c8bb'];
+    return palette[Math.floor(Math.random() * palette.length)];
+}
+
+function createStars() {
+    stars = [];
+    for (let i = 0; i < STAR_COUNT; i++) {
+        stars.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            r: Math.random() * 1.5 + 0.5,
+            color: randomColor(),
+            speed: Math.random() * 0.3 + 0.05,
+            angle: Math.random() * Math.PI * 2,
+            drift: Math.random() * 0.5 + 0.1
+        });
+    }
+}
+createStars();
+window.addEventListener('resize', createStars);
+
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (let star of stars) {
+        star.x += Math.cos(star.angle) * star.speed;
+        star.y += Math.sin(star.angle) * star.speed;
+        star.angle += (Math.random() - 0.5) * 0.05; 
+
+        if (star.x < 0) star.x = canvas.width;
+        if (star.x > canvas.width) star.x = 0;
+        if (star.y < 0) star.y = canvas.height;
+        if (star.y > canvas.height) star.y = 0;
+
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
+        ctx.fillStyle = star.color;
+        ctx.shadowColor = star.color;
+        ctx.shadowBlur = 8;
+        ctx.fill();
+        ctx.shadowBlur = 0;
+    }
+    requestAnimationFrame(animate);
+}
+animate();
+</script>
+</body>
 </html>
