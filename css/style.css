@@ -343,6 +343,40 @@ h2 {
         font-size: 0.8rem;
         margin-left: 2px;
     }
+    .social-icons {
+        flex-wrap: wrap;
+        gap: 0.7rem 0.4rem;
+        justify-content: flex-start;
+    }
+    .icon {
+        min-width: 36px;
+        min-height: 36px;
+        width: 36px;
+        height: 36px;
+        font-size: 1.2rem;
+        flex-shrink: 0;
+    }
+    .icon img, .icon svg {
+        width: 70%;
+        height: 70%;
+        object-fit: contain;
+        display: block;
+        margin: 0 auto;
+    }
+    .tech-stack {
+        flex-wrap: wrap;
+        gap: 0.3rem;
+    }
+    .tag {
+        font-size: 0.85em;
+        padding: 0.18em 0.7em;
+        max-width: 90vw;
+        margin-right: 0;
+        margin-bottom: 0.2em;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 }
 
 /* 12. Gradient Overlay */
