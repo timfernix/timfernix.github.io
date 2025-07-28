@@ -217,9 +217,9 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 <script>
 const canvas = document.getElementById('star-bg-canvas');
-const ctx = canvas.getContext('2d');
+const ctx = canvas.getContext('2d', { willReadFrequently: true }); 
 let stars = [];
-const STAR_COUNT = 40;
+const STAR_COUNT = 80; 
 
 function resizeCanvas() {
     canvas.width = window.innerWidth;
@@ -252,10 +252,12 @@ window.addEventListener('resize', createStars);
 
 function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.save();
+    ctx.shadowBlur = 8;
     for (let star of stars) {
         star.x += Math.cos(star.angle) * star.speed;
         star.y += Math.sin(star.angle) * star.speed;
-        star.angle += (Math.random() - 0.5) * 0.05; 
+        star.angle += (Math.random() - 0.5) * 0.05;
 
         if (star.x < 0) star.x = canvas.width;
         if (star.x > canvas.width) star.x = 0;
@@ -266,10 +268,9 @@ function animate() {
         ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
         ctx.fillStyle = star.color;
         ctx.shadowColor = star.color;
-        ctx.shadowBlur = 8;
         ctx.fill();
-        ctx.shadowBlur = 0;
     }
+    ctx.restore();
     requestAnimationFrame(animate);
 }
 animate();
