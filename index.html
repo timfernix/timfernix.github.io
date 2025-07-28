@@ -222,8 +222,13 @@ let stars = [];
 const STAR_COUNT = 30; 
 
 function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = window.innerWidth * dpr;
+    canvas.height = window.innerHeight * dpr;
+    canvas.style.width = window.innerWidth + 'px';
+    canvas.style.height = window.innerHeight + 'px';
+    ctx.setTransform(1, 0, 0, 1, 0, 0); 
+    ctx.scale(dpr, dpr);
 }
 resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
