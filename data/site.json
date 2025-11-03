@@ -2,17 +2,17 @@
   "title": "timfernix",
   "tagline": "Would call myself ezreal kinnie but im just an it specialist irl",
   "socials": [
-    { "kind": "github",     "label": "GitHub",                  "url": "https://github.com/timfernix" },
-    { "kind": "website",    "label": "Portfolio",               "url": "https://timfernix.github.io" },
-    { "kind": "discord",    "label": "'timfernix'",              "url": "" },
-    { "kind": "twitter",    "label": "Twitter",                 "url": "https://x.com/timfernix" },
-    { "kind": "bluesky",    "label": "Bluesky",                 "url": "https://bsky.app/profile/timfernix.bsky.social" },
-    { "kind": "twitch",     "label": "Twitch",                  "url": "https://www.twitch.tv/timfernix" },
-    { "kind": "spotify",    "label": "Spotify",                 "url": "https://open.spotify.com/user/boyofphoenix" },
-    { "kind": "statsfm",    "label": "stats.fm",                "url": "https://stats.fm/timfernix" },
-    { "kind": "youtube",    "label": "YouTube",                 "url": "https://www.youtube.com/@timfernix" },
-    { "kind": "riot",       "label": "'Star Guardian Ez#real'", "url": "" },
-    { "kind": "steam",      "label": "Steam",                   "url": "https://steamcommunity.com/id/timfernix" },
-    { "kind": "bungie",    "label": "Bungie",                   "url": "https://www.bungie.net/7/en/User/Profile/3/4611686018500806005?bgn=timfernix" }
+    { "kind": "github",     "label": "[GitHub]",                  "url": "https://github.com/timfernix" },
+    { "kind": "website",    "label": "[Portfolio]",               "url": "https://timfernix.github.io" },
+    { "kind": "discord",    "label": "timfernix",              "url": "" },
+    { "kind": "twitter",    "label": "[Twitter]",                 "url": "https://x.com/timfernix" },
+    { "kind": "bluesky",    "label": "[Bluesky]",                 "url": "https://bsky.app/profile/timfernix.bsky.social" },
+    { "kind": "twitch",     "label": "[Twitch]",                  "url": "https://www.twitch.tv/timfernix" },
+    { "kind": "spotify",    "label": "[Spotify]",                 "url": "https://open.spotify.com/user/boyofphoenix" },
+    { "kind": "statsfm",    "label": "[stats.fm]",                "url": "https://stats.fm/timfernix" },
+    { "kind": "youtube",    "label": "[YouTube]",                 "url": "https://www.youtube.com/@timfernix" },
+    { "kind": "riot",       "label": "Star Guardian Ez#real", "url": "" },
+    { "kind": "steam",      "label": "[Steam]",                   "url": "https://steamcommunity.com/id/timfernix" },
+    { "kind": "bungie",    "label": "[Bungie]",                   "url": "https://www.bungie.net/7/en/User/Profile/3/4611686018500806005?bgn=timfernix" }
     ]
 }
