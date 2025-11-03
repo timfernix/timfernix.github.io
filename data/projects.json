@@ -22,8 +22,8 @@
     "summary": "Community‑friendly archive for Ezreal media with filters and search.",
     "image": "assets/ezreal.png",
     "tags": ["HTML", "CSS", "JavaScript", "GitHub Actions"],
-    "demo": "https://timfernix.github.io/ezreal-archive/",
-    "repo": "https://github.com/timfernix/ezreal-archive",
+    "demo": "https://timfernix.github.io/ezreal/",
+    "repo": "https://github.com/timfernix/ezreal",
     "featured": true
   },
   {
@@ -31,17 +31,17 @@
     "summary": "Test your League of Legends purity - playful quiz with shareable result.",
     "image": "assets/purity.png",
     "tags": ["HTML", "CSS", "JavaScript"],
-    "demo": "https://timfernix.github.io/purity/",
-    "repo": "https://github.com/timfernix/purity",
-    "featured": false
+    "demo": "https://timfernix.github.io/LeaguePurityTest/",
+    "repo": "https://github.com/timfernix/LeaguePurityTest",
+    "featured": true
   },
     {
     "title": "Zoe Helper ✦ Discord Bot",
     "summary": "Enhances the support experience on the Zoe Discord Bot server.",
     "image": "assets/zoehelper.png",
     "tags": ["DiscordJS", "JavaScript", "RSS"],
-    "demo": "https://discord.gg/",
-    "repo": "https://github.com/timfernix/",
+    "demo": "https://discord.gg/5z9Nqhu8Gu",
+    "repo": "https://github.com/timfernix/Zoe-Helper",
     "featured": true
   }
 ]
