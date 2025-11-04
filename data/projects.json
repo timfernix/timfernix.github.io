@@ -61,5 +61,23 @@
     "demo": "https://discord.gg/",
     "repo": "https://github.com/timfernix/firststar",
     "featured": false
+  },
+    {
+    "title": "Soundstation ✦ Website",
+    "summary": "Small page to display and play song files.",
+    "image": "assets/soundstation.jpg",
+    "tags": ["HTML", "CSS", "JavaScript"],
+    "demo": "https://timfernix.github.io/soundstation/",
+    "repo": "https://github.com/timfernix/soundstation",
+    "featured": false
+  },
+    {
+    "title": "MediaDB ✦ Website",
+    "summary": "Code for a personal movie/show/game database website.",
+    "image": "",
+    "tags": ["HTML", "CSS", "JavaScript",  "PHP", "MySQL"],
+    "demo": "",
+    "repo": "https://github.com/timfernix/mediadb",
+    "featured": false
   }
 ]
