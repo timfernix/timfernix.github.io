@@ -60,6 +60,6 @@
     "tags": ["DiscordJS", "JavaScript", "MySQL"],
     "demo": "https://discord.gg/",
     "repo": "https://github.com/timfernix/firststar",
-    "featured": true
+    "featured": false
   }
 ]
