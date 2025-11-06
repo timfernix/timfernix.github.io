@@ -49,7 +49,7 @@
     "summary": "Bot to manage Twodis OTP ARAM Super Tournaments on Discord.",
     "image": "assets/toast.gif",
     "tags": ["DiscordJS", "JavaScript", "RSS"],
-    "demo": "https://discord.gg/",
+    "demo": "",
     "repo": "https://github.com/timfernix/TOAST",
     "featured": false
   },
@@ -58,7 +58,7 @@
     "summary": "Bot for my personal Discord server for leveling, onboarding and more.",
     "image": "assets/firststar.png",
     "tags": ["DiscordJS", "JavaScript", "MySQL"],
-    "demo": "https://discord.gg/",
+    "demo": "",
     "repo": "https://github.com/timfernix/firststar",
     "featured": false
   },
@@ -74,10 +74,19 @@
     {
     "title": "MediaDB ✦ Website",
     "summary": "Code for a personal movie/show/game database website.",
-    "image": "",
+    "image": "assets/movie.png",
     "tags": ["HTML", "CSS", "JavaScript",  "PHP", "MySQL"],
     "demo": "",
     "repo": "https://github.com/timfernix/mediadb",
+    "featured": false
+  },
+    {
+    "title": "Image Duplicate Finder ✦ Script",
+    "summary": "Python script to find duplicate images in a folder using perceptual hashing.",
+    "image": "assets/duplicatefinder.png",
+    "tags": ["Python"],
+    "demo": "",
+    "repo": "https://github.com/timfernix/duplicate-finder",
     "featured": false
   }
 ]
