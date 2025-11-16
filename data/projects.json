@@ -1,5 +1,14 @@
 [
   {
+    "title": "League Tier List Maker ✦ Website",
+    "summary": "Create and share custom tier lists for League of Legends champions with drag-and-drop functionality.",
+    "image": "assets/tierlist.png",
+    "tags": ["HTML", "CSS", "JavaScript", "Python", "GitHub Actions"],
+    "demo": "https://timfernix.github.io/tierlist/",
+    "repo": "https://github.com/timfernix/tierlist",
+    "featured": true
+  },
+  {
     "title": "Zoe ✦ Discord Bot",
     "summary": "Track stats, compete in leaderboards, bet on matches and build a vibrant community. All with Zoe.",
     "image": "assets/zoe.png",

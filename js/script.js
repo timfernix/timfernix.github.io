@@ -21,57 +21,76 @@ function makeBadge(text) {
 
 function projectCard(p) {
   const el = document.createElement('article');
-  el.className = 'card';
+  el.className = 'project-card';
   el.dataset.tags = (p.tags || []).join(',').toLowerCase();
 
   el.innerHTML = `
-    <div class="media">
+    <div class="card-media">
       <img src="${p.image || 'assets/project-default.webp'}" alt="${p.title} preview" loading="lazy" decoding="async" />
     </div>
-    <div class="body">
-      <h3>${p.title}</h3>
-      <p>${p.summary || ''}</p>
-      <div class="badges"></div>
+    <div class="card-body">
+      <h3 class="card-title">${p.title}</h3>
+      <p class="card-description">${p.summary || ''}</p>
+      <div class="card-tags"></div>
     </div>
-    <div class="actions">
-      ${p.demo ? `<a class="btn primary" href="${p.demo}" target="_blank" rel="noopener">View</a>` : ''}
-      ${p.repo ? `<a class="btn" href="${p.repo}" target="_blank" rel="noopener">Repo</a>` : ''}
+    <div class="card-actions">
+      ${p.demo ? `<a class="card-btn card-btn-primary" href="${p.demo}" target="_blank" rel="noopener">View Project</a>` : ''}
+      ${p.repo ? `<a class="card-btn card-btn-secondary" href="${p.repo}" target="_blank" rel="noopener">GitHub</a>` : ''}
     </div>`;
 
-  const badges = $('.badges', el);
-  (p.tags || []).forEach(t => badges.appendChild(makeBadge(t)));
+  const tags = $('.card-tags', el);
+  (p.tags || []).forEach(t => {
+    const img = document.createElement('img');
+    img.className = 'shield-badge';
+    img.src = `https://img.shields.io/badge/${encodeURIComponent(t)}-gray?style=flat-square&logo=${getLogoForTech(t)}&logoColor=white`;
+    img.alt = t;
+    img.loading = 'lazy';
+    tags.appendChild(img);
+  });
   return el;
 }
 
-function renderProjects() {
-  const root = $('#projects');
-  root.setAttribute('aria-busy', 'true');
-  root.innerHTML = '';
+function getLogoForTech(tech) {
+  const logoMap = {
+    'HTML': 'html5',
+    'CSS': 'css3',
+    'JavaScript': 'javascript',
+    'Python': 'python',
+    'Java': 'openjdk',
+    'GitHub Actions': 'githubactions',
+    'Discord JDA': 'discord',
+    'DiscordJS': 'discord',
+    'Discord.js': 'discord',
+    'Riot API': 'riotgames',
+    'RSS': 'rss',
+    'MySQL': 'mysql',
+    'PHP': 'php',
+    'Drag & Drop': 'html5'
+  };
+  return logoMap[tech] || tech.toLowerCase().replace(/[^a-z0-9]/g, '');
+}
 
+function renderProjects() {
   const featured = state.projects.filter(p => p.featured);
   const rest     = state.projects.filter(p => !p.featured);
 
-  const grid = document.createElement('div');
-  grid.className = 'featured-grid';
-  featured.forEach(p => grid.appendChild(projectCard(p)));
-  root.appendChild(grid);
+  const featuredGrid = $('#featured-projects');
+  const moreGrid = $('#more-projects');
 
-  if (rest.length) {
-    const carousel = document.createElement('div');
-    carousel.className = 'carousel';
-    carousel.setAttribute('role', 'region');
-    carousel.setAttribute('aria-label', 'More projects');
+  featuredGrid.innerHTML = '';
+  moreGrid.innerHTML = '';
 
-    const track = document.createElement('div');
-    track.className = 'track';
+  featured.forEach((p, i) => {
+    const card = projectCard(p);
+    card.style.animationDelay = `${i * 0.1}s`;
+    featuredGrid.appendChild(card);
+  });
 
-    [...rest, ...rest].forEach(p => track.appendChild(projectCard(p)));
-
-    carousel.appendChild(track);
-    root.appendChild(carousel);
-  }
-
-  root.setAttribute('aria-busy', 'false');
+  rest.forEach((p, i) => {
+    const card = projectCard(p);
+    card.style.animationDelay = `${(featured.length + i) * 0.1}s`;
+    moreGrid.appendChild(card);
+  });
 }
 
 function renderSocials() {
@@ -79,11 +98,26 @@ function renderSocials() {
   list.innerHTML = '';
   state.socials.forEach(s => {
     const li = document.createElement('li');
-    li.innerHTML = `
-      <a href="${s.url}" target="_blank" rel="noopener" title="${s.label}" aria-label="${s.label}">
+    const link = document.createElement('a');
+    link.className = 'social-link';
+    if (s.url) {
+      link.href = s.url;
+      link.target = '_blank';
+      link.rel = 'noopener';
+    } else {
+      link.style.cursor = 'default';
+    }
+    link.title = s.label;
+    link.setAttribute('aria-label', s.label);
+    
+    link.innerHTML = `
+      <div class="social-icon">
         ${iconFor(s.kind)}
-        <span>${s.label}</span>
-      </a>`;
+      </div>
+      <span class="social-label">${s.label}</span>
+    `;
+    
+    li.appendChild(link);
     list.appendChild(li);
   });
 }
@@ -97,7 +131,7 @@ function iconFor(kind) {
     bluesky: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bluesky" viewBox="0 0 16 16"><path d="M3.468 1.948C5.303 3.325 7.276 6.118 8 7.616c.725-1.498 2.698-4.29 4.532-5.668C13.855.955 16 .186 16 2.632c0 .489-.28 4.105-.444 4.692-.572 2.04-2.653 2.561-4.504 2.246 3.236.551 4.06 2.375 2.281 4.2-3.376 3.464-4.852-.87-5.23-1.98-.07-.204-.103-.3-.103-.218 0-.081-.033.014-.102.218-.379 1.11-1.855 5.444-5.231 1.98-1.778-1.825-.955-3.65 2.28-4.2-1.85.315-3.932-.205-4.503-2.246C.28 6.737 0 3.12 0 2.632 0 .186 2.145.955 3.468 1.948"/></svg>',
     twitch: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitch" viewBox="0 0 16 16"><path d="M3.857 0 1 2.857v10.286h3.429V16l2.857-2.857H9.57L14.714 8V0zm9.714 7.429-2.285 2.285H9l-2 2v-2H4.429V1.143h9.142z"/><path d="M11.857 3.143h-1.143V6.57h1.143zm-3.143 0H7.571V6.57h1.143z"/></svg>',
     spotify: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-spotify" viewBox="0 0 16 16"><path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.669 11.538a.5.5 0 0 1-.686.165c-1.879-1.147-4.243-1.407-7.028-.77a.499.499 0 0 1-.222-.973c3.048-.696 5.662-.397 7.77.892a.5.5 0 0 1 .166.686m.979-2.178a.624.624 0 0 1-.858.205c-2.15-1.321-5.428-1.704-7.972-.932a.625.625 0 0 1-.362-1.194c2.905-.881 6.517-.454 8.986 1.063a.624.624 0 0 1 .206.858m.084-2.268C10.154 5.56 5.9 5.419 3.438 6.166a.748.748 0 1 1-.434-1.432c2.825-.857 7.523-.692 10.492 1.07a.747.747 0 1 1-.764 1.288"/></svg>',
-    statsfm: '<svg viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="12" d="M39 71.87V170M96 22v148m57-53.087V170"></path></g></svg>',
+    statsfm: '<svg viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="12" d="M39 71.87V170M96 22v148m57-53.087V170"></path></g></svg>',
     youtube: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-youtube" viewBox="0 0 16 16"><path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.01 2.01 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.01 2.01 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31 31 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.01 2.01 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A100 100 0 0 1 7.858 2zM6.4 5.209v4.818l4.157-2.408z"/></svg>',
     riot: '<svg fill="#ffffff" viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><title>Riot Games icon</title><path d="M12.534 21.77l-1.09-2.81 10.52.54-.451 4.5zM15.06 0L.307 6.969 2.59 17.471H5.6l-.52-7.512.461-.144 1.81 7.656h3.126l-.116-9.15.462-.144 1.582 9.294h3.31l.78-11.053.462-.144.82 11.197h4.376l1.54-15.37Z"></path></g></svg>',
     steam: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-steam" viewBox="0 0 16 16"><path d="M.329 10.333A8.01 8.01 0 0 0 7.99 16C12.414 16 16 12.418 16 8s-3.586-8-8.009-8A8.006 8.006 0 0 0 0 7.468l.003.006 4.304 1.769A2.2 2.2 0 0 1 5.62 8.88l1.96-2.844-.001-.04a3.046 3.046 0 0 1 3.042-3.043 3.046 3.046 0 0 1 3.042 3.043 3.047 3.047 0 0 1-3.111 3.044l-2.804 2a2.223 2.223 0 0 1-3.075 2.11 2.22 2.22 0 0 1-1.312-1.568L.33 10.333Z"/><path d="M4.868 12.683a1.715 1.715 0 0 0 1.318-3.165 1.7 1.7 0 0 0-1.263-.02l1.023.424a1.261 1.261 0 1 1-.97 2.33l-.99-.41a1.7 1.7 0 0 0 .882.84Zm3.726-6.687a2.03 2.03 0 0 0 2.027 2.029 2.03 2.03 0 0 0 2.027-2.029 2.03 2.03 0 0 0-2.027-2.027 2.03 2.03 0 0 0-2.027 2.027m2.03-1.527a1.524 1.524 0 1 1-.002 3.048 1.524 1.524 0 0 1 .002-3.048"/></svg>',
@@ -106,11 +140,30 @@ function iconFor(kind) {
   return map[kind] || map.website;
 }
 
-function animateOnView() {
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => e.isIntersecting && e.target.classList.add('in'));
-  }, { threshold: .2 });
-  $$('#projects .card').forEach(el => io.observe(el));
+function initScrollEffects() {
+  // Add scrolled class to nav on scroll
+  const nav = $('.floating-nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 100) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+  });
+
+  // Smooth scroll for nav links
+  $$('.nav-link, .btn-primary, .btn-secondary').forEach(link => {
+    link.addEventListener('click', (e) => {
+      const href = link.getAttribute('href');
+      if (href && href.startsWith('#')) {
+        e.preventDefault();
+        const target = $(href);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+  });
 }
 
 function sparkles() {
@@ -140,12 +193,12 @@ async function main() {
   state.socials = site.socials || [];
   state.projects = projects || [];
 
-  $('#site-title').textContent = site.title || 'Tim';
+  $('#site-title').textContent = site.title || 'timfernix';
   $('#site-tagline').textContent = site.tagline || '';
 
   renderProjects();
   renderSocials();
-  animateOnView();
+  initScrollEffects();
 
   document.documentElement.classList.remove('is-loading');
   document.documentElement.classList.add('is-loaded');
@@ -153,5 +206,8 @@ async function main() {
 
 main().catch(err => {
   console.error(err);
-  $('#projects').innerHTML = `<p>Could not load data. Check <code>data/*.json</code>.</p>`;
+  const featuredGrid = $('#featured-projects');
+  if (featuredGrid) {
+    featuredGrid.innerHTML = `<p>Could not load data. Check <code>data/*.json</code>.</p>`;
+  }
 });

@@ -17,38 +17,97 @@
     <script type="module" src="js/script.js" defer></script>
   </head>
   <body>
+    <canvas id="sparkles" aria-hidden="true"></canvas>
     <a class="skip" href="#content">Skip to content</a>
 
-    <header id="top" class="site-header">
-      <div class="brand">
-        <img src="assets/avatar.jpg" alt="Avatar" width="64" height="64" loading="eager" decoding="async" />
-        <div class="titles">
-          <h1 id="site-title">timfernix</h1>
-          <p id="site-tagline">timfernix projects & links</p>
+    <nav class="floating-nav">
+      <div class="nav-content">
+        <a href="#top" class="nav-logo">
+          <img src="assets/avatar.jpg" alt="timfernix" width="42" height="42" loading="eager" decoding="async" />
+        </a>
+        <div class="nav-links">
+          <a href="#projects" class="nav-link">Projects</a>
+          <a href="#about" class="nav-link">About</a>
+          <a href="#links" class="nav-link">Connect</a>
         </div>
       </div>
-    </header>
+    </nav>
 
     <main id="content" class="site-main">
-      <canvas id="sparkles" aria-hidden="true"></canvas>
-
-      <section class="hero">
-        <h2 class="hero-title">Projects</h2>
-        <p class="hero-sub"></p>
+      <section id="top" class="hero-section">
+        <div class="hero-content">
+          <div class="hero-avatar-wrap">
+            <div class="avatar-glow"></div>
+            <img src="assets/avatar.jpg" alt="Avatar" class="hero-avatar" loading="eager" decoding="async" />
+          </div>
+          <h1 class="hero-heading">
+            <span class="hero-name" id="site-title">timfernix</span>
+            <span class="hero-sparkle">✦</span>
+          </h1>
+          <p class="hero-tagline" id="site-tagline"></p>
+          <div class="hero-cta">
+            <a href="#projects" class="btn-primary">View Projects</a>
+            <a href="#links" class="btn-secondary">Connect</a>
+          </div>
+        </div>
+        <a href="#about" class="scroll-indicator" aria-label="Scroll to about section">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 5v14M19 12l-7 7-7-7"/>
+          </svg>
+        </a>
       </section>
 
-      <section id="projects" class="projects-wrap" aria-live="polite" aria-busy="true"></section>
+      <section id="about" class="about-section">
+        <div class="section-container">
+          <div class="about-content">
+            <h2 class="section-title">
+              <span class="title-accent">✦</span>
+              About Me
+            </h2>
+            <div class="about-text">
+              <p>IT specialist by day, creator by passion. Building tools and experiences for gaming communities, with a focus on League of Legends. From Discord bots to web apps, I love crafting projects that bring people together.</p>
+            </div>
+            <div class="tech-stack">
+              <span class="tech-badge">JavaScript</span>
+              <span class="tech-badge">HTML/CSS</span>
+              <span class="tech-badge">Discord.js</span>
+              <span class="tech-badge">Riot API</span>
+              <span class="tech-badge">GitHub Actions</span>
+            </div>
+          </div>
+        </div>
+      </section>
 
-      <section id="links" class="links">
-        <h2>Socials & Games</h2>
-        <p>Follow, star or say hi ✦</p>
-        <ul id="socials" class="socials" role="list"></ul>
+      <section id="projects" class="projects-section">
+        <div class="section-container">
+          <h2 class="section-title">
+            <span class="title-accent">✦</span>
+            Featured Projects
+          </h2>
+          <div id="featured-projects" class="featured-grid"></div>
+          
+          <h3 class="section-subtitle">More Projects</h3>
+          <div id="more-projects" class="more-projects-grid"></div>
+        </div>
+      </section>
+
+      <section id="links" class="links-section">
+        <div class="section-container">
+          <h2 class="section-title">
+            <span class="title-accent">✦</span>
+            Let's Connect
+          </h2>
+          <p class="section-description">Follow, star, or say hi</p>
+          <ul id="socials" class="socials-grid" role="list"></ul>
+        </div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <p>Built with ❤️ & ✨</p>
-      <p class="small"></p>
+      <div class="footer-content">
+        <p>Built with 💖 by timfernix</p>
+        <p class="footer-year">2025</p>
+      </div>
     </footer>
     <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"872aa0053fb94ba7bf52129ad5b003ea"}'></script>
   </body>
